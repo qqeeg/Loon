@@ -11,7 +11,7 @@ JKD_WITHDRAW 提现金额
 [task_local]
 0,30 * * * * https://raw.githubusercontent.com/shylocks/Loon/main/jkd.js, tag=聚看点
 [rewrite_local]
-https:\/\/www\.xiaodouzhuan\.cn\/jkd\/newMobileMenu\/infoMe\.action url script-request-body https://raw.githubusercontent.com/shylocks/Loon/main/jkd.js
+https:\/\/www\.xiaodouzhuan\.cn\/jkd\/getMoneyTreeProfit\.action url script-request-body https://raw.githubusercontent.com/qqeeg/Loon/main/jkd.js
 
 ================Loon==============
 [Script]
@@ -39,6 +39,7 @@ async function getCookie() {
     let cks = $.getdata('CookiesJKD2') || "[]"
     cks = jsonParse(cks);
     const Cookieval = $request.headers['Cookie']
+    Cookieval = Cookieval+';'
     $.log(`Cookie:${Cookieval}`)
     $.log(`bodyVal:${bodyVal}`)
     if (Cookieval) {
