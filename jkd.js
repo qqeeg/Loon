@@ -1,7 +1,7 @@
 /*
 聚看点，所有任务+阅读
-欢迎填写邀请码：24224873
-点我的获取Cookie
+欢迎填写邀请码：24224913
+先点“我的”——然后点“任务”获取Cookie
 
 =============环境变量=============
 JKD_COOKIE cookies，可选择用&、@、换行隔开
@@ -11,7 +11,7 @@ JKD_WITHDRAW 提现金额
 [task_local]
 0,30 * * * * https://raw.githubusercontent.com/shylocks/Loon/main/jkd.js, tag=聚看点
 [rewrite_local]
-https:\/\/www\.xiaodouzhuan\.cn\/jkd\/getMoneyTreeProfit\.action url script-request-body https://raw.githubusercontent.com/qqeeg/Loon/main/jkd.js
+https:\/\/www\.xiaodouzhuan\.cn\/jkd\/task\/getMoneyTreeProfit\.action url script-request-body https://raw.githubusercontent.com/qqeeg/Loon/main/jkd.js
 
 ================Loon==============
 [Script]
