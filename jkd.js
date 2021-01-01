@@ -39,7 +39,7 @@ async function getCookie() {
     let cks = $.getdata('CookiesJKD2') || "[]"
     cks = jsonParse(cks);
     const Cookieval = $request.headers['Cookie']
-    Cookieval = Cookieval+';'
+    Cookieval = Cookieval+';';
     $.log(`Cookie:${Cookieval}`)
     $.log(`bodyVal:${bodyVal}`)
     if (Cookieval) {
