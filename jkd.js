@@ -48,7 +48,8 @@ async function getCookie() {
         await getOpenId()
         os.push($.openId)
       }
-      cookie = Cookieval +';' ;
+      cookie = Cookieval 
+      console.log(cookie)
       await getOpenId()
       if ($.openId && !os.includes($.openId)) {
         cks.push(Cookieval)
