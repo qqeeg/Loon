@@ -53,7 +53,9 @@ async function getCookie() {
       console.log(cookie)
       await getOpenId()
       if ($.openId && !os.includes($.openId)) {
+        cks.reverse()
         cks.push(Cookieval)
+        cks.reverse()
         $.setdata(JSON.stringify(cks), "CookiesJKD2")
         $.msg($.name, `获取Cookie ${$.openId} 成功`)
       } else {
