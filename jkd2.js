@@ -791,7 +791,7 @@ function getArticleList(categoryId = 3) {
     "channel": $.iOS ? "iOS" : "android",
     "psign": "92dea068b6c271161be05ed358b59932",
     "appversioncode": $.version,
-    "time": "1609437200",
+    "time": `${Date.parse(new Date())/1000+31000}`,
     "apptoken": "xzwltoken070704",
     "cateid": categoryId,
     "openid": $.openId,
