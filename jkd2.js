@@ -787,18 +787,16 @@ function getArticleList(categoryId = 3) {
     "appid": "xzwl",
     "connectionType": 100,
     "optaction": "down",
-    "pagesize": 12,
     "channel": $.iOS ? "iOS" : "android",
     "psign": "92dea068b6c271161be05ed358b59932",
     "appversioncode": $.version,
-    "time": `${Date.parse(new Date())/1000+31000}`,
+    "time": `${Date.parse(new Date())/1000}`,
     "apptoken": "xzwltoken070704",
     "cateid": categoryId,
     "openid": $.openId,
     "os": $.iOS ? "iOS" : "android",
     "appversion": $.version.toString().split('').join('.'),
     "operatorType": 2,
-    "page": 12
   }
   return new Promise(resolve => {
     $.post(taskPostUrl("jkd/newmobile/artlist.action",
