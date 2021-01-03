@@ -785,8 +785,6 @@ function rewardAdv(body) {
 function getArticleList(categoryId = 3) {
   let body = {
     "appid": "xzwl",
-    "connectionType": 100,
-    "optaction": "down",
     "channel": $.iOS ? "iOS" : "android",
     "psign": "92dea068b6c271161be05ed358b59932",
     "appversioncode": $.version,
@@ -796,7 +794,6 @@ function getArticleList(categoryId = 3) {
     "openid": $.openId,
     "os": $.iOS ? "iOS" : "android",
     "appversion": $.version.toString().split('').join('.'),
-    "operatorType": 2,
   }
   return new Promise(resolve => {
     $.post(taskPostUrl("jkd/newmobile/artlist.action",
