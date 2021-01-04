@@ -293,14 +293,14 @@ async function jkd() {
   // 看文章
   let stV = new Date().getTime()
   await call2($.uuid)
-  if ($.artcount < 91) {
-        $.log(`可阅读次数少于90,更换caid:13`)
+  if ($.artcount < 31) {
+        $.log(`可阅读次数少于30,更换caid:13`)
         $.caid=13
   } else if ($.artcount < 61) {
         $.log(`可阅读次数少于60,更换caid:23`)
         $.caid=23
-  }else if ($.artcount < 31) {
-        $.log(`可阅读次数少于30,更换caid:33`)
+  }else if ($.artcount < 91) {
+        $.log(`可阅读次数少于90,更换caid:33`)
         $.caid=33
   }
   await getArticleList($.caid)
