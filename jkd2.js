@@ -29,7 +29,7 @@ const DATE = `${new Date().getUTCFullYear()}${(new Date().getUTCMonth()+1).toStr
 let liveBody = null, fakeIOS = true
 const $ = new Env("聚看点")
 let sum = 0
-let ps = '0cf94b87f584dfc81a87fa74dcb3757f'
+let ps = '92dea068b6c271161be05ed358b59932'
 let cookiesArr = [
   // '', // xz_jkd_appkey=xxx; JSESSIONID=xxx; UM_distinctid=xxx; （账号1ck）
   // '', // xz_jkd_appkey=xxx; JSESSIONID=xxx; UM_distinctid=xxx; （账号2ck）
@@ -347,7 +347,7 @@ function userLive(body) {
     "time": new Date().getTime(),
     "apptoken": "xzwltoken070704",
     "appversion": $.version.toString().split('').join('.'),
-    "openid": "5575aa16cb974da4bd735f182fbffac5",
+    "openid": $.openId,
     "os": $.iOS ? "iOS" : "android",
     "opdate": `${DATE}`
   }
