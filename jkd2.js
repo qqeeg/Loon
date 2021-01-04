@@ -160,10 +160,13 @@ if (typeof $request !== 'undefined') {
         } else if (cookie.indexOf('android') > 0) {
           console.log(`${$.userName}的cookie来自安卓客户端`)
           // $.iOS = false
-          if(!fakeIOS)
+          if(!fakeIOS){
             UA = 'Dalvik/2.1.0 (Linux; U; Android 10; ONEPLUS A5010 Build/QKQ1.191014.012)'
-          else
+            console.log(`无法获取客户端标示，请检查cookie是否正确`)
+          }else{
             cookie = cookie.replace('!android!753', '!iOS!5.6.5')
+            console.log(`伪装iOS_cookie`)
+          }
         } else{
           console.log(`无法获取客户端标示，请检查cookie是否正确`)
         }
