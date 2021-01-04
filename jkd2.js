@@ -29,6 +29,7 @@ const DATE = `${new Date().getUTCFullYear()}${(new Date().getUTCMonth()+1).toStr
 let liveBody = null, fakeIOS = true
 const $ = new Env("聚看点")
 let sum = 0
+let ps = '0cf94b87f584dfc81a87fa74dcb3757f'
 let cookiesArr = [
   // '', // xz_jkd_appkey=xxx; JSESSIONID=xxx; UM_distinctid=xxx; （账号1ck）
   // '', // xz_jkd_appkey=xxx; JSESSIONID=xxx; UM_distinctid=xxx; （账号2ck）
@@ -287,6 +288,11 @@ async function jkd() {
   $.artList = []
   // 看文章
   let stV = new Date().getTime()
+  await call2($.uuid)
+      if ($.artcount < 70) {
+        $.log(`更换ps`)
+        $.ps='0cf94b87f584dfc81a87fa74dcb3757f'
+      }
   await getArticleList()
   for (let i = 0; i < $.artList.length; ++i) {
     const art = $.artList[i]
@@ -790,7 +796,7 @@ function getArticleList(categoryId = 3) {
   let body = {
     "appid": "xzwl",
     "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
-    "psign": "92dea068b6c271161be05ed358b59932",
+    "psign": $.ps,
     "appversioncode": $.version,
     "time": `${Date.parse(new Date())/1000}`,
     "apptoken": "xzwltoken070704",
