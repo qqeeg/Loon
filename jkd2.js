@@ -335,7 +335,7 @@ function userLive(body) {
   let postBody = {
     ...body,
     "appid": "xzwl",
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "psign": "92dea068b6c271161be05ed358b59932",
     "appversioncode": $.version,
     "time": new Date().getTime(),
@@ -428,7 +428,7 @@ function getStageState() {
 function getTaskList() {
   let body = {
     "appid": "xzwl",
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "psign": "92dea068b6c271161be05ed358b59932",
     "appversioncode": $.version,
     "time": new Date().getTime(),
@@ -484,7 +484,7 @@ function doTask(taskId, taskName, action) {
     //"exporturl": "https:\/\/kyshiman.com\/kkz\/channel?ref=436",
     //"pageurl": "https:\/\/new.huanzhuti.com\/news\/26382197?cid=qsbk02",
     "slidenum": 1,
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "psign": "92dea068b6c271161be05ed358b59932",
     "appversioncode": `${$.version}`,
     "time": `${new Date().getTime()}`,
@@ -563,7 +563,7 @@ function getOpenId() {
 function getUserInfo() {
   let body = {
     "openid": $.openId,
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "os": $.iOS ? "iOS" : "android",
     "appversioncode": $.version,
     "time": new Date().getTime().toString(),
@@ -669,7 +669,7 @@ function getTaskBoxProfit(boxType = 1) {
 function signShare(position) {
   let body = {
     "openid": $.openId,
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "os": $.iOS ? "iOS" : "android",
     "appversioncode": `${$.version}`,
     "time": `${new Date().getTime()}`,
@@ -715,7 +715,7 @@ function signShare(position) {
 function adv(position) {
   let body = {
     "openid": $.openId,
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "os": $.iOS ? "iOS" : "android",
     "appversioncode": `${$.version}`,
     "time": `${new Date().getTime()}`,
@@ -789,7 +789,7 @@ function rewardAdv(body) {
 function getArticleList(categoryId = 3) {
   let body = {
     "appid": "xzwl",
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "psign": "92dea068b6c271161be05ed358b59932",
     "appversioncode": $.version,
     "time": `${Date.parse(new Date())/1000}`,
@@ -827,7 +827,7 @@ function getArticleList(categoryId = 3) {
 function openTimeBox() {
   let body = {
     "openid": $.openId,
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "os": $.iOS ? "iOS" : "android",
     "appversioncode": `${$.version}`,
     "time": `${new Date().getTime()}`,
@@ -875,7 +875,7 @@ function getArticle(artId) {
     "apptoken": "xzwltoken070704",
     "appversion": $.version.toString().split('').join('.'),
     "openid": $.openId,
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "os": $.iOS ? "iOS" : "android",
     "psign": "92dea068b6c271161be05ed358b59932",
     "artid": artId,
@@ -908,7 +908,7 @@ function getArticle(artId) {
 function getVideo(artId) {
   let body = {
     "appid": "xzwl",
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "psign": "92dea068b6c271161be05ed358b59932",
     "appversioncode": $.version.toString(),
     "time": new Date().getTime().toString(),
@@ -981,7 +981,7 @@ function call2(uuid, opttype="ART_READ") {
     "openid": $.openId,
     "app_id": "xzwl",
     "version_token": `${$.version}`,
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "vercode": `${$.version}`,
     "psign": "92dea068b6c271161be05ed358b59932",
     "app_token": "xzwltoken070704",
@@ -990,7 +990,7 @@ function call2(uuid, opttype="ART_READ") {
       "openID": $.openId,
       "uniqueid": uuid,
       "os": $.iOS ? "iOS" : "android",
-      "channel": $.iOS ? "iOS" : "android",
+      "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
       "openid": $.openId
     }
   }
@@ -1032,7 +1032,7 @@ function call3(uuid, opttype="ART_READ") {
     "openid": $.openId,
     "app_id": "xzwl",
     "version_token": `${$.version}`,
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "vercode": `${$.version}`,
     "psign": "92dea068b6c271161be05ed358b59932",
     "app_token": "xzwltoken070704",
@@ -1041,7 +1041,7 @@ function call3(uuid, opttype="ART_READ") {
       "openID": $.openId,
       "uniqueid": uuid,
       "os": $.iOS ? "iOS" : "android",
-      "channel": $.iOS ? "iOS" : "android",
+      "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
       "openid": $.openId
     }
   }
@@ -1083,7 +1083,7 @@ function call1(uuid, article_id, opttype="INF_ART_COMMENTS") {
     "openid": $.openId,
     "app_id": "xzwl",
     "version_token": `${$.version}`,
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "vercode": `${$.version}`,
     "psign": "92dea068b6c271161be05ed358b59932",
     "app_token": "xzwltoken070704",
@@ -1092,7 +1092,7 @@ function call1(uuid, article_id, opttype="INF_ART_COMMENTS") {
       "openID": $.openId,
       "uniqueid": uuid,
       "os": $.iOS ? "iOS" : "android",
-      "channel": $.iOS ? "iOS" : "android",
+      "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
       "openid": $.openId
     }
   }
@@ -1208,7 +1208,7 @@ function readAccount(artId, payType = 1) {
     "read_weal": 0,
     "paytype": payType,
     "securitykey": "",
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "psign": "92dea068b6c271161be05ed358b59932",
     "appversioncode": `${$.version}`,
     "time": `${new Date().getTime()}`,
@@ -1256,7 +1256,7 @@ function videoAccount(artId) {
     "read_weal": 0,
     "paytype": 2,
     "securitykey": "",
-    "channel": $.iOS ? "iOS" : "android",
+    "channel": $.iOS ? "IOS-qianzhuan" : "android-qianzhuan",
     "psign": "92dea068b6c271161be05ed358b59932",
     "appversioncode": $.version,
     "time": new Date().toString(),
