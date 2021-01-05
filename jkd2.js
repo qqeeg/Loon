@@ -258,7 +258,7 @@ async function jkd() {
     }
   }
   // await getTaskList() // 任务
-  for (let a = 0;a < $.ew; a++){
+  for (let a = 0; a < $.ew; ++a){
     for (let i = 0; i < $.videoPacketNum; ++i) {
     $.log(`去看激励视频`)
     await adv(17)
