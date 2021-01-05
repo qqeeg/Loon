@@ -323,7 +323,7 @@ async function jkd() {
             await adv(17)
           }
           await openTimeBox()  // 宝箱
-          await $.wait(20 * 1000)
+          await $.wait(62 * 1000)
         }
         break
       }
