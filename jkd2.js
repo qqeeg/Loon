@@ -243,11 +243,11 @@ async function jkd() {
   $.profit = 0
   await bindTeacher()
   if (!$.isSign) await sign() // 签到
-  $.log(`去领取阶段奖励`)
+  $.log(`【账号${$.name}${$.index} ${$.userName}】去领取阶段奖励`)
   await getStageState() // 阶段奖励
   $.luckyDrawNum = 50
   if ($.luckyDrawNum > 0) {
-    $.log(`去转转盘`)
+    $.log(`【账号${$.name}${$.index} ${$.userName}】去转转盘`)
     for (let i = 0; i < 10 && $.luckyDrawNum > 0; ++i) {
       await getLuckyLevel()
       if ($.luckyDrawNum === 0) break
@@ -258,7 +258,7 @@ async function jkd() {
   }
   // await getTaskList() // 任务
   for (let i = 0; i < $.videoPacketNum; ++i) {
-  $.log(`去看激励视频`)
+  $.log(`【账号${$.name}${$.index} ${$.userName}】去看激励视频`)
   await adv(17)
   }
   await openTimeBox()  // 宝箱
@@ -272,10 +272,10 @@ async function jkd() {
     const art = $.artList[i]
     if (art['art_id']) {
       let artId = art['art_id']
-      $.log(`去看视频：${artId}`)
+      $.log(`【账号${$.name}${$.index} ${$.userName}】去看视频：${artId}`)
       await call2($.uuid)
       if ($.videocount === 0) {
-        $.log(`观看视屏次数已满，跳出`)
+        $.log(`【账号${$.name}${$.index} ${$.userName}】观看视屏次数已满，跳出`)
         break
       }
       await call1($.uuid,artId)
@@ -286,13 +286,13 @@ async function jkd() {
       await videoAccount(artId)
       await $.wait(5 * 1000)
     }
-    if (i % 2 ===0 ){
-       for (let i = 0; i < $.videoPacketNum; ++i) {
-         $.log(`去看激励视频`)
-         await adv(17)
-       }
-      await openTimeBox()  // 宝箱
-    }
+//    if (i % 2 ===0 ){
+//       for (let i = 0; i < $.videoPacketNum; ++i) {
+//         $.log(`去看激励视频`)
+//         await adv(17)
+//       }
+//      await openTimeBox()  // 宝箱
+//}
   }
   let etA = new Date().getTime()
   let addArticleTime = Math.trunc((etA-stA)/1000)
@@ -301,13 +301,13 @@ async function jkd() {
   let stV = new Date().getTime()
   await call2($.uuid)
   if ($.artcount < 31) {
-        $.log(`可阅读次数少于30,更换caid:33`)
+        $.log(`【账号${$.name}${$.index} ${$.userName}】可阅读次数少于30,更换caid:33`)
         $.caid=33
   } else if ($.artcount < 61) {
-        $.log(`可阅读次数少于60,更换caid:23`)
+        $.log(`【账号${$.name}${$.index} ${$.userName}】可阅读次数少于60,更换caid:23`)
         $.caid=23
   }else if ($.artcount < 91) {
-        $.log(`可阅读次数少于90,更换caid:13`)
+        $.log(`【账号${$.name}${$.index} ${$.userName}】可阅读次数少于90,更换caid:13`)
         $.caid=13
   }
   await getArticleList($.caid)
@@ -316,15 +316,15 @@ async function jkd() {
     if (art['art_id']) {
       await call2($.uuid)
       if ($.artcount === 0) {
-        $.log(`观看文章次数已满，运行5次额外奖励后跳出`)
-        for (let i=0; i<5; i++){
-          for (let i = 0; i < $.videoPacketNum; ++i) {
-            $.log(`去看激励视频`)
-            await adv(17)
-          }
-          await openTimeBox()  // 宝箱
-          await $.wait(62 * 1000)
-        }
+        $.log(`【账号${$.name}${$.index} ${$.userName}】观看文章次数已满`)
+//        for (let i=0; i<5; i++){
+//          for (let i = 0; i < $.videoPacketNum; ++i) {
+//            $.log(`【账号${$.name}${$.index} ${$.userName}】去看激励视频`)
+//            await adv(17)
+//          }
+//         await openTimeBox()  // 宝箱
+//          await $.wait(62 * 1000)
+//        }
         break
       }
       let artId = art['art_id']
@@ -336,14 +336,14 @@ async function jkd() {
       await readAccount(artId)
       await $.wait(5 * 1000)
     }
-    if (i % 2 ===0 ){
-       for (let i = 0; i < $.videoPacketNum; ++i) {
-         $.log(`去看激励视频`)
-         await adv(17)
-       }
-      await openTimeBox()  // 宝箱
-    }
+//    if (i % 2 ===0 ){
+//   }
   }
+  for (let i = 0; i < $.videoPacketNum; ++i) {
+    $.log(`【账号${$.name}${$.index} ${$.userName}】去看第二次激励视频`)
+    await adv(17)
+  }
+    await openTimeBox()  // 宝箱
   let etV = new Date().getTime()
   let addVideoTime = Math.trunc((etV-stV)/1000)
 
@@ -363,7 +363,7 @@ async function jkd() {
   }
   $.message += `本次运行增加活跃时间 ${addLiveTime} 秒\n`
   await userLive(body)
-  $.log(`本次运行完成，共计获得 ${$.profit} 金币`)
+  $.log(`【账号${$.name}${$.index} ${$.userName}】本次运行完成，共计获得 ${$.profit} 金币`)
   $.message += `本次运行获得 ${$.profit} 金币\n`
   await getUserInfo()
 }
@@ -388,15 +388,15 @@ function userLive(body) {
       `jsondata=${escape(JSON.stringify(postBody))}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
-              console.log('增加阅读时长成功！')
+              console.log(`【账号${$.name}${$.index} ${$.userName}】增加阅读时长成功！`)
             } else {
-              $.log(`获取任务列表失败，错误信息：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】获取任务列表失败，错误信息：${JSON.stringify(data)}`)
             }
           }
         }
@@ -414,8 +414,8 @@ function bindTeacher() {
     $.get(taskGetUrl("jkd/weixin20/member/bindTeacher.action", "teacherCode=24224873"), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           // console.log(data)
         }
@@ -433,21 +433,21 @@ function getStageState() {
     $.post(taskGetUrl("jkd/weixin20/newactivity/readStageReward.action",), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           for (let i = 1; i <= 3; ++i) {
             let str = `var readtime${i} = "(.*)";`
             switch (parseInt(data.match(str)[1])) {
               case 1:
-                $.log(`第${i}阶段奖励可领取`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】第${i}阶段奖励可领取`)
                 await getStageReward(i)
                 break
               case 2:
-                $.log(`第${i}阶段奖励已领取过`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】第${i}阶段奖励已领取过`)
                 break
               default:
-                $.log(`第${i}阶段未完成`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】第${i}阶段未完成`)
                 break
             }
           }
@@ -486,8 +486,8 @@ function getTaskList() {
       `jsondata=${escape(JSON.stringify(body))}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
@@ -496,14 +496,14 @@ function getTaskList() {
               for (let i = 0; i < taskList.length; ++i) {
                 const task = taskList[i]
                 if (task['tstatus'] === 1) {
-                  $.log(`去做任务【${task['name']}】`)
+                  $.log(`【账号${$.name}${$.index} ${$.userName}】去做任务【${task['name']}】`)
                   await doTask(task['pid'], task['name'], "doTask")
                   await doTask(task['pid'], task['name'], "getMoney")
                   await $.wait(15 * 1000)
                 }
               }
             } else {
-              $.log(`获取任务列表失败，错误信息：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】获取任务列表失败，错误信息：${JSON.stringify(data)}`)
             }
           }
         }
@@ -537,15 +537,15 @@ function doTask(taskId, taskName, action) {
     // "name": taskName,
     "taskExecuteId": 0
   }
-  $.log(`jsondata=${escape(JSON.stringify(body))}`)
+  $.log(`【账号${$.name}${$.index} ${$.userName}】jsondata=${escape(JSON.stringify(body))}`)
   return new Promise(resolve => {
     $.post(taskPostUrl(`jkd/mobile/base/welfaretask/${action}.action`,
       `jsondata=${escape(JSON.stringify(body))}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
           //$.log(resp)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
@@ -558,7 +558,7 @@ function doTask(taskId, taskName, action) {
                 }
               }
             } else {
-              $.log(`获取任务列表失败，错误信息：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】获取任务列表失败，错误信息：${JSON.stringify(data)}`)
             }
           }
         }
@@ -576,13 +576,13 @@ function getOpenId() {
     $.post(taskGetUrl("jkd/task/userSign.action", `channel=${$.iOS?"iOS":"android"}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           $.openId = data.match(/var openid = "(\S*)"/)[1]
           $.version = data.match(/var myversions = parseInt\("(.*)"\)/)[1]
           if ($.openId) {
-            $.log(`获取openId成功`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】获取openId成功`)
           }
           // $.isSign = data.match(/var issign = parseInt\("(.*)"\)/)[1]
           $.videoPacketNum = data.match(/var videoPacketNum = (\S*);/)[1]
@@ -615,8 +615,8 @@ function getUserInfo() {
       `jsondata=${escape(JSON.stringify(body))}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
@@ -626,7 +626,7 @@ function getUserInfo() {
               $.gold = data.userinfo.infoMeGoldItem.title + ": " + data.userinfo.infoMeGoldItem.value
               $.current = data.userinfo.infoMeCurCashItem.value
             } else {
-              $.log(`个人信息获取失败，错误信息：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】个人信息获取失败，错误信息：${JSON.stringify(data)}`)
             }
           }
         }
@@ -645,19 +645,19 @@ function sign() {
     $.get(taskGetUrl("jkd/task/sign.action", body), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
               $.profit += data.datas.signAmt
-              $.log(`签到成功，获得 ${data.datas.signAmt} 金币，已签到 ${data.datas.signDays} 天，下次签到金币：${data.datas.nextSignAmt}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】签到成功，获得 ${data.datas.signAmt} 金币，已签到 ${data.datas.signDays} 天，下次签到金币：${data.datas.nextSignAmt}`)
               $.message += `签到成功，获得 ${data.datas.signAmt} 金币，已签到 ${data.datas.signDays} 天，下次签到金币：${data.datas.nextSignAmt}\n`
-              $.log(`去做签到分享任务`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】去做签到分享任务`)
               await signShare(data.datas.position)
             } else {
-              $.log(`签到失败，错误信息：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】签到失败，错误信息：${JSON.stringify(data)}`)
             }
           }
         }
@@ -676,22 +676,22 @@ function getTaskBoxProfit(boxType = 1) {
     $.post(taskPostUrl("jkd/task/getTaskBoxProfit.action", body), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
-              $.log(`摇钱树开启成功，获得 ${data.profit} 金币`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】摇钱树开启成功，获得 ${data.profit} 金币`)
               $.profit += data.profit
               if (data.advertPopup && data.advertPopup.advert) {
-                $.log(`去做额外翻倍任务`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】去做额外翻倍任务`)
                 await adv(data.advertPopup.position)
               }
             } else if (data['ret'] === 'fail') {
-              $.log(`摇钱树开启失败，错误信息：${data.rtn_msg}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】摇钱树开启失败，错误信息：${data.rtn_msg}`)
             } else {
-              $.log(`未知错误：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
             }
           }
         }
@@ -722,22 +722,22 @@ function signShare(position) {
       `jsondata=${escape(JSON.stringify(body))}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
-              $.log(`签到分享成功，获得 ${data.profit} 金币`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】签到分享成功，获得 ${data.profit} 金币`)
               $.profit += data.profit
               if (data.advertPopup && data.advertPopup.advert) {
-                $.log(`去做额外【${data.advertPopup.buttonText}】任务`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】去做额外【${data.advertPopup.buttonText}】任务`)
                 await adv(data.advertPopup.position)
               }
             } else if (data['ret'] === 'fail') {
-              $.log(`签到失败，错误信息：${data.rtn_msg}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】签到失败，错误信息：${data.rtn_msg}`)
             } else {
-              $.log(`未知错误：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
             }
           }
         }
@@ -768,20 +768,20 @@ function adv(position) {
       `jsondata=${escape(JSON.stringify(body))}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
-              $.log(`点击视频成功，预计获得 ${data.rewardAmount ? data.rewardAmount : 0} 金币，等待 30 秒`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】点击视频成功，预计获得 ${data.rewardAmount ? data.rewardAmount : 0} 金币，等待 30 秒`)
               await $.wait(31 * 1000)
               body['time'] = `${new Date().getTime()}`
               await rewardAdv(body)
             } else if (data['ret'] === 'fail') {
-              $.log(`点击视频失败，错误信息：${data.rtn_msg}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】点击视频失败，错误信息：${data.rtn_msg}`)
             } else {
-              $.log(`未知错误：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
             }
           }
         }
@@ -800,18 +800,18 @@ function rewardAdv(body) {
       `jsondata=${escape(JSON.stringify(body))}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
-              $.log(`观看视频成功，获得 ${data.profit} 金币`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】观看视频成功，获得 ${data.profit} 金币`)
               $.profit += data.profit
             } else if (data['ret'] === 'fail') {
-              $.log(`观看视频失败，错误信息：${data.rtn_msg}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】观看视频失败，错误信息：${data.rtn_msg}`)
             } else {
-              $.log(`未知错误：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
             }
           }
         }
@@ -847,8 +847,8 @@ function getArticleList(categoryId = 3) {
       async (err, resp, data) => {
         try {
           if (err) {
-            $.log(`${JSON.stringify(err)}`)
-            $.log(`${$.name} API请求失败，请检查网路重试`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
@@ -883,22 +883,22 @@ function openTimeBox() {
       `jsondata=${escape(JSON.stringify(body))}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
-              $.log(`宝箱奖励领取成功，获得 ${data.profit} 金币`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】宝箱奖励领取成功，获得 ${data.profit} 金币`)
               $.profit += data.profit
               if (data.advertPopup && data.advertPopup.position) {
-                $.log(`去做额外【${data.advertPopup.buttonText}】任务`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】去做额外【${data.advertPopup.buttonText}】任务`)
                 await adv(data.advertPopup.position)
               }
             } else if (data['ret'] === 'fail') {
-              $.log(`签到失败，错误信息：${data.rtn_msg}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】签到失败，错误信息：${data.rtn_msg}`)
             } else {
-              $.log(`未知错误：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
             }
           }
         }
@@ -928,13 +928,13 @@ function getArticle(artId) {
       `jsondata=${escape(JSON.stringify(body))}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
-              $.log(`articleDetail 记录成功`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】articleDetail 记录成功`)
             }
           }
         }
@@ -968,13 +968,13 @@ function getVideo(artId) {
       `jsondata=${escape(JSON.stringify(body))}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
-              $.log(`artDetail 记录成功`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】artDetail 记录成功`)
             }
           }
         }
@@ -993,18 +993,18 @@ function getStageReward(stage) {
       `stage=${stage}`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
-              $.log(`阶段奖励${stage}获取成功，获得 ${data.profit} 金币`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】阶段奖励${stage}获取成功，获得 ${data.profit} 金币`)
               $.profit += data.profit
             } else if (data['ret'] === 'fail') {
-              $.log(`阶段奖励获取失败，错误信息：${data.rtn_msg}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】阶段奖励获取失败，错误信息：${data.rtn_msg}`)
             } else {
-              $.log(`未知错误：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
             }
           }
         }
@@ -1042,8 +1042,8 @@ function call2(uuid, opttype="ART_READ") {
       async (err, resp, data) => {
         try {
           if (err) {
-            $.log(`${JSON.stringify(err)}`)
-            $.log(`${$.name} API请求失败，请检查网路重试`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
@@ -1051,9 +1051,9 @@ function call2(uuid, opttype="ART_READ") {
                 if(opttype==='ART_READ') {
                   $.artcount = data.datas.artcount
                   $.videocount = data.datas.videocount
-                  $.log(`文章剩余观看次数：${$.artcount}，视频剩余观看次数：${$.videocount}`)
+                  $.log(`【账号${$.name}${$.index} ${$.userName}】文章剩余观看次数：${$.artcount}，视频剩余观看次数：${$.videocount}`)
                 }else{
-                  console.log(`动作${opttype}记录成功！`)
+                  console.log(`【账号${$.name}${$.index} ${$.userName}】动作${opttype}记录成功！`)
                 }
               }else{
                 console.log(data)
@@ -1093,8 +1093,8 @@ function call3(uuid, opttype="ART_READ") {
       async (err, resp, data) => {
         try {
           if (err) {
-            $.log(`${JSON.stringify(err)}`)
-            $.log(`${$.name} API请求失败，请检查网路重试`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
@@ -1102,9 +1102,9 @@ function call3(uuid, opttype="ART_READ") {
                 if(opttype==='ART_READ') {
                   $.artcount = data.datas.artcount
                   $.videocount = data.datas.videocount
-                  $.log(`文章剩余观看次数：${$.artcount}，视频剩余观看次数：${$.videocount}`)
+                  $.log(`【账号${$.name}${$.index} ${$.userName}】文章剩余观看次数：${$.artcount}，视频剩余观看次数：${$.videocount}`)
                 }else{
-                  console.log(`动作${opttype}记录成功！`)
+                  console.log(`【账号${$.name}${$.index} ${$.userName}】动作${opttype}记录成功！`)
                 }
               }else{
                 console.log(data)
@@ -1145,8 +1145,8 @@ function call1(uuid, article_id, opttype="INF_ART_COMMENTS") {
       async (err, resp, data) => {
         try {
           if (err) {
-            $.log(`${JSON.stringify(err)}`)
-            $.log(`${$.name} API请求失败，请检查网路重试`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
@@ -1178,10 +1178,10 @@ function article(artId) {
     $.get(config, async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
-          $.log(`article 记录成功`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】article 记录成功`)
         }
       } catch (e) {
         $.logErr(e, resp)
@@ -1210,10 +1210,10 @@ function openArticle(artId) {
     $.post(config, async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
-          $.log(`openArticle 记录成功`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】openArticle 记录成功`)
         }
       } catch (e) {
         $.logErr(e, resp)
@@ -1230,10 +1230,10 @@ function video(artId) {
     $.get(taskGetUrl('jkd/weixin20/station/cnzzinVideo.action', body), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
-          $.log(`video 记录成功`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】video 记录成功`)
         }
       } catch (e) {
         $.logErr(e, resp)
@@ -1268,18 +1268,18 @@ function readAccount(artId, payType = 1) {
       async (err, resp, data) => {
         try {
           if (err) {
-            $.log(`${JSON.stringify(err)}`)
-            $.log(`${$.name} API请求失败，请检查网路重试`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
               if (data['ret'] === 'ok') {
-                $.log(`文章【${artId}】阅读成功，获得 ${data.profit} 金币`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】文章【${artId}】阅读成功，获得 ${data.profit} 金币`)
                 $.profit += data.profit
               } else if (data['ret'] === 'fail') {
-                $.log(`文章阅读失败，错误信息：${data.rtn_msg}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】文章阅读失败，错误信息：${data.rtn_msg}`)
               } else {
-                $.log(`未知错误：${JSON.stringify(data)}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
               }
             }
           }
@@ -1316,18 +1316,18 @@ function videoAccount(artId) {
       async (err, resp, data) => {
         try {
           if (err) {
-            $.log(`${JSON.stringify(err)}`)
-            $.log(`${$.name} API请求失败，请检查网路重试`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
               if (data['ret'] === 'ok') {
-                $.log(`视频【${artId}】阅读成功，获得 ${data.profit} 金币`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】视频【${artId}】阅读成功，获得 ${data.profit} 金币`)
                 $.profit += data.profit
               } else if (data['ret'] === 'fail') {
-                $.log(`视频阅读失败，错误信息：${data.rtn_msg}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】视频阅读失败，错误信息：${data.rtn_msg}`)
               } else {
-                $.log(`未知错误：${JSON.stringify(data)}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
               }
             }
           }
@@ -1346,17 +1346,17 @@ function luckyDraw() {
       async (err, resp, data) => {
         try {
           if (err) {
-            $.log(`${JSON.stringify(err)}`)
-            $.log(`${$.name} API请求失败，请检查网路重试`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
               if (data['ret'] === 'ok') {
-                $.log(`luckyDraw记录成功`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】luckyDraw记录成功`)
               } else if (data['ret'] === 'fail') {
-                $.log(`luckyDraw记录失败，错误信息：${data.rtn_msg}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】luckyDraw记录失败，错误信息：${data.rtn_msg}`)
               } else {
-                $.log(`未知错误：${JSON.stringify(data)}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
               }
             }
           }
@@ -1375,17 +1375,17 @@ function luckyProfit() {
       async (err, resp, data) => {
         try {
           if (err) {
-            $.log(`${JSON.stringify(err)}`)
-            $.log(`${$.name} API请求失败，请检查网路重试`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
               if (data['ret'] === 'ok') {
-                $.log(`转盘获取成功，共计 ${data.data.totalProfit} 金币`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】转盘获取成功，共计 ${data.data.totalProfit} 金币`)
               } else if (data['ret'] === 'fail') {
-                $.log(`视频阅读失败，错误信息：${data.rtn_msg}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】视频阅读失败，错误信息：${data.rtn_msg}`)
               } else {
-                $.log(`未知错误：${JSON.stringify(data)}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
               }
             }
           }
@@ -1404,31 +1404,31 @@ function getLuckyLevel() {
       async (err, resp, data) => {
         try {
           if (err) {
-            $.log(`${JSON.stringify(err)}`)
-            $.log(`${$.name} API请求失败，请检查网路重试`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
               if (data['ret'] === 'ok') {
-                console.log(`转盘记录成功，剩余 ${data.data.unFinishNum} 次`)
+                console.log(`【账号${$.name}${$.index} ${$.userName}】转盘记录成功，剩余 ${data.data.unFinishNum} 次`)
                 $.unFinishNum = data.data.unFinishNum
                 let states = JSON.parse(data.data.list)
                 for (let i = 0; i < states.length; ++i) {
                   const vo = states[i]
                   if (vo['status'] === 1) {
-                    console.log(`去领取开宝箱阶段奖励：${vo['level']}`)
+                    console.log(`【账号${$.name}${$.index} ${$.userName}】去领取开宝箱阶段奖励：${vo['level']}`)
                     await getLuckyDrawBox(i)
                   }
                 }
                 if (data['data']['luckName'] === "神秘宝箱") {
-                  console.log(`去领取神秘宝箱奖励`)
+                  console.log(`【账号${$.name}${$.index} ${$.userName}】去领取神秘宝箱奖励`)
                   await adv(11)
                 }
               } else if (data['ret'] === 'failed') {
-                $.log(`转盘已达上限，跳出`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】转盘已达上限，跳出`)
                 $.luckyDrawNum = 0
               } else {
-                $.log(`未知错误：${JSON.stringify(data)}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
               }
             }
           }
@@ -1448,18 +1448,18 @@ function getLuckyDrawBox(i) {
       async (err, resp, data) => {
         try {
           if (err) {
-            $.log(`${JSON.stringify(err)}`)
-            $.log(`${$.name} API请求失败，请检查网路重试`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+            $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
               if (data['ret'] === 'ok') {
-                console.log(`阶段奖励领取成功，获得 ${data.data} 金币`)
+                console.log(`【账号${$.name}${$.index} ${$.userName}】阶段奖励领取成功，获得 ${data.data} 金币`)
                 $.profit += data.data
               } else if (data['ret'] === 'fail') {
-                $.log(`阶段奖励领取失败，错误信息：${data.rtn_msg}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】阶段奖励领取失败，错误信息：${data.rtn_msg}`)
               } else {
-                $.log(`未知错误：${JSON.stringify(data)}`)
+                $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
               }
             }
           }
@@ -1478,17 +1478,17 @@ function withDraw() {
       `type=wx&sum=${sum}&mobile=&pid=0`), async (err, resp, data) => {
       try {
         if (err) {
-          $.log(`${JSON.stringify(err)}`)
-          $.log(`${$.name} API请求失败，请检查网路重试`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['ret'] === 'ok') {
-              $.log(`提现成功`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】提现成功`)
             } else if (data['ret'] === 'fail') {
-              $.log(`提现失败，错误信息：${data.rtn_msg}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】提现失败，错误信息：${data.rtn_msg}`)
             } else {
-              $.log(`未知错误：${JSON.stringify(data)}`)
+              $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
             }
           }
         }
@@ -1508,7 +1508,7 @@ function safeGet(data) {
     }
   } catch (e) {
     $.log(e);
-    $.log(`京东服务器访问数据为空，请检查自身设备网络情况`);
+    $.log(`【账号${$.name}${$.index} ${$.userName}】京东服务器访问数据为空，请检查自身设备网络情况`);
     return false;
   }
 }
