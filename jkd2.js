@@ -30,7 +30,6 @@ let liveBody = null, fakeIOS = true
 const $ = new Env("聚看点")
 let sum = 0
 let caid = 3
-let ew = 3
 let ps = '0cf94b87f584dfc81a87fa74dcb3757f'
 let cookiesArr = [
   // '', // xz_jkd_appkey=xxx; JSESSIONID=xxx; UM_distinctid=xxx; （账号1ck）
@@ -258,13 +257,11 @@ async function jkd() {
     }
   }
   // await getTaskList() // 任务
-  for (let a = 0; a < ew; a++){
-    for (let i = 0; i < $.videoPacketNum; ++i) {
-    $.log(`去看激励视频`)
-    await adv(17)
-    }
-  await openTimeBox()  // 宝箱
+  for (let i = 0; i < $.videoPacketNum; ++i) {
+  $.log(`去看激励视频`)
+  await adv(17)
   }
+  await openTimeBox()  // 宝箱
   await getTaskBoxProfit()  // 摇钱树1
   await getTaskBoxProfit(2) // 摇钱树2*/
   $.artList = []
@@ -289,6 +286,13 @@ async function jkd() {
       await videoAccount(artId)
       await $.wait(5 * 1000)
     }
+    if (i % 2 ===0 ){
+       for (let i = 0; i < $.videoPacketNum; ++i) {
+         $.log(`去看激励视频`)
+         await adv(17)
+       }
+      await openTimeBox()  // 宝箱
+    }
   }
   let etA = new Date().getTime()
   let addArticleTime = Math.trunc((etA-stA)/1000)
@@ -312,7 +316,14 @@ async function jkd() {
     if (art['art_id']) {
       await call2($.uuid)
       if ($.artcount === 0) {
-        $.log(`观看文章次数已满，跳出`)
+        $.log(`观看文章次数已满，运行5次额外奖励后跳出`)
+        for (let i=0; i<5; i++){
+          for (let i = 0; i < $.videoPacketNum; ++i) {
+            $.log(`去看激励视频`)
+            await adv(17)
+          }
+          await openTimeBox()  // 宝箱
+        }
         break
       }
       let artId = art['art_id']
@@ -323,6 +334,13 @@ async function jkd() {
       await $.wait(31 * 1000)
       await readAccount(artId)
       await $.wait(5 * 1000)
+    }
+    if (i % 2 ===0 ){
+       for (let i = 0; i < $.videoPacketNum; ++i) {
+         $.log(`去看激励视频`)
+         await adv(17)
+       }
+      await openTimeBox()  // 宝箱
     }
   }
   let etV = new Date().getTime()
