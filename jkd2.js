@@ -24,7 +24,7 @@ cron "0,30 * * * *" script-path=https://raw.githubusercontent.com/shylocks/Loon/
 hostname = www.xiaodouzhuan.cn
 */
 const API_HOST = 'https://www.xiaodouzhuan.cn'
-let UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
+let UA = 'QianZhuan/60.0.6 (iPhone; iOS 14.0; Scale/2.00)'
 const DATE = `${new Date().getUTCFullYear()}${(new Date().getUTCMonth()+1).toString().padStart(2,"0")}${new Date().getUTCDate().toString().padStart(2,"0")}`
 let liveBody = null, fakeIOS = true
 const $ = new Env("聚看点")
