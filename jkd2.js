@@ -344,6 +344,9 @@ async function jkd() {
       await openTimeBox()  // 宝箱
     }
   }
+  for (let x =18;x<32;++x){
+    await adv(x)
+  }
   let etV = new Date().getTime()
   let addVideoTime = Math.trunc((etV-stV)/1000)
 
