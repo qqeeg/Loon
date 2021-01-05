@@ -30,6 +30,7 @@ let liveBody = null, fakeIOS = true
 const $ = new Env("聚看点")
 let sum = 0
 let caid = 3
+const ew = 3
 let ps = '0cf94b87f584dfc81a87fa74dcb3757f'
 let cookiesArr = [
   // '', // xz_jkd_appkey=xxx; JSESSIONID=xxx; UM_distinctid=xxx; （账号1ck）
@@ -257,11 +258,13 @@ async function jkd() {
     }
   }
   // await getTaskList() // 任务
-  for (let i = 0; i < $.videoPacketNum; ++i) {
+  for (let a = 0;a < $.ew; a++){
+    for (let i = 0; i < $.videoPacketNum; ++i) {
     $.log(`去看激励视频`)
     await adv(17)
-  }
+    }
   await openTimeBox()  // 宝箱
+  }
   await getTaskBoxProfit()  // 摇钱树1
   await getTaskBoxProfit(2) // 摇钱树2*/
   $.artList = []
@@ -295,13 +298,13 @@ async function jkd() {
   await call2($.uuid)
   if ($.artcount < 31) {
         $.log(`可阅读次数少于30,更换caid:13`)
-        $.caid=13
+        $.caid=33
   } else if ($.artcount < 61) {
         $.log(`可阅读次数少于60,更换caid:23`)
         $.caid=23
   }else if ($.artcount < 91) {
         $.log(`可阅读次数少于90,更换caid:33`)
-        $.caid=33
+        $.caid=13
   }
   await getArticleList($.caid)
   for (let i = 0; i < $.artList.length; ++i) {
