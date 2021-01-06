@@ -339,11 +339,11 @@ async function jkd() {
 //    if (i % 2 ===0 ){
 //   }
   }
-  for (let i = 0; i < $.videoPacketNum; ++i) {
-    $.log(`【账号${$.name}${$.index} ${$.userName}】去看第二次激励视频`)
-    await adv(17)
-  }
-    await openTimeBox()  // 宝箱
+//  for (let i = 0; i < $.videoPacketNum; ++i) {
+//    $.log(`【账号${$.name}${$.index} ${$.userName}】去看第二次激励视频`)
+//    await adv(17)
+//  }
+//    await openTimeBox()  // 宝箱
   let etV = new Date().getTime()
   let addVideoTime = Math.trunc((etV-stV)/1000)
 
