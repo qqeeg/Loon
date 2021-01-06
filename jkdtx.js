@@ -1390,6 +1390,7 @@ function withDraw() {
   return new Promise(resolve => {
     $.post(taskPostUrl("jkd/weixin20/userWithdraw/userWithdrawPost.action",
       `type=wx&sum=${sum}&mobile=&pid=0`), async (err, resp, data) => {
+      console.log(resp);
       try {
         if (err) {
           $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
