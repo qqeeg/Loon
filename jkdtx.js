@@ -1391,21 +1391,22 @@ function withDraw() {
     $.post(taskPostUrl("jkd/weixin20/userWithdraw/userWithdrawPost.action",
       `type=wx&sum=${sum}&mobile=&pid=0`), async (err, resp, data) => {
       console.log(resp);
+      console.log(data);
       try {
         if (err) {
-          $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
-          $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
+        //  $.log(`【账号${$.name}${$.index} ${$.userName}】${JSON.stringify(err)}`)
+        //  $.log(`【账号${$.name}${$.index} ${$.userName}】${$.name} API请求失败，请检查网路重试`)
         } else {
-          if (safeGet(data)) {
-            data = JSON.parse(data);
-            if (data['ret'] === 'ok') {
-              $.log(`【账号${$.name}${$.index} ${$.userName}】提现成功`)
-            } else if (data['ret'] === 'fail') {
-              $.log(`【账号${$.name}${$.index} ${$.userName}】提现失败，错误信息：${data.rtn_msg}`)
-            } else {
-              $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
-            }
-          }
+       //   if (safeGet(data)) {
+       //     data = JSON.parse(data);
+       //     if (data['ret'] === 'ok') {
+       //       $.log(`【账号${$.name}${$.index} ${$.userName}】提现成功`)
+       //     } else if (data['ret'] === 'fail') {
+       //       $.log(`【账号${$.name}${$.index} ${$.userName}】提现失败，错误信息：${data.rtn_msg}`)
+       //     } else {
+       //       $.log(`【账号${$.name}${$.index} ${$.userName}】未知错误：${JSON.stringify(data)}`)
+       //    }
+       //   }
         }
       } catch (e) {
         $.logErr(e, resp)
