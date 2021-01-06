@@ -349,7 +349,7 @@ async function jkd() {
 
   await $.wait(1000)
   let et = new Date().getTime()
-  let addLiveTime = Math.trunc((et-st)/1000)
+  let addLiveTime = 1212
   liveBody[$.openId][DATE]['livetime'] += addLiveTime
   liveBody[$.openId][DATE]['articletime'] += addArticleTime
   liveBody[$.openId][DATE]['videotime'] += addVideoTime
