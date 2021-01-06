@@ -256,7 +256,6 @@ async function jkd() {
   }
   $.artList = []
   // 看视频
-  await withDraw()
   let stA = new Date().getTime()
   let etV = new Date().getTime()
   let stV = new Date().getTime()
