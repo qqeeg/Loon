@@ -28,7 +28,7 @@ let UA = 'QianZhuan/60.0.6 (iPhone; iOS 14.0; Scale/2.00)'
 const DATE = `${new Date().getUTCFullYear()}${(new Date().getUTCMonth()+1).toString().padStart(2,"0")}${new Date().getUTCDate().toString().padStart(2,"0")}`
 let liveBody = null, fakeIOS = true
 const $ = new Env("聚看点")
-let sum = 3
+let sum = 10
 let caid = 3
 let ps = '0cf94b87f584dfc81a87fa74dcb3757f'
 let cookiesArr = [
@@ -259,11 +259,13 @@ async function jkd() {
   await withDraw()
   let stA = new Date().getTime()
   let etV = new Date().getTime()
+  let stV = new Date().getTime()
   let addVideoTime = Math.trunc((etV-stV)/1000)
 
   await $.wait(1000)
   let et = new Date().getTime()
   let addLiveTime = Math.trunc((et-st)/1000)
+  let addArticleTime = Math.trunc((et-st)/1000)
   liveBody[$.openId][DATE]['livetime'] += addLiveTime
   liveBody[$.openId][DATE]['articletime'] += addArticleTime
   liveBody[$.openId][DATE]['videotime'] += addVideoTime
